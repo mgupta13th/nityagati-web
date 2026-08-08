@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "Nityagati's Terms of Service govern the use of the Nityagati platform and applications.",
     url: "https://nityagati.com/terms",
+    images: ["/nityagati_logo_primary_navyblue.png"],
   },
 };
 

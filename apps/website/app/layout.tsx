@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     siteName: "Nityagati",
-    images: ["/nityagati_logo_horizontal.png"],
+    images: ["/nityagati_logo_primary_navyblue.png"],
   },
 };
 

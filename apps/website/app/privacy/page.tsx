@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "Nityagati's Privacy Policy explains how we collect, use, and protect information.",
     url: "https://nityagati.com/privacy",
+    images: ["/nityagati_logo_primary_navyblue.png"],
   },
 };
 

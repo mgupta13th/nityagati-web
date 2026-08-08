@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Nityagati Business ERP helps manufacturing businesses manage accounting, inventory, production, sales, and workforce operations from one mobile-first platform.",
     url: "https://nityagati.com/",
+    images: ["/nityagati_logo_primary_navyblue.png"],
   },
 };
 
