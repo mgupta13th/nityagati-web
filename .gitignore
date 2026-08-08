@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# next.js build output
+apps/website/.next/
+apps/website/out/
+
+# typescript
+apps/website/*.tsbuildinfo
+apps/website/next-env.d.ts
+
+# env files -- never commit secrets
+.env
+.env*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

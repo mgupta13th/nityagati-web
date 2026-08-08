@@ -1,0 +1,22 @@
+{
+  "name": "website",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Nityagati public website (nityagati.com) -- Next.js, static export. Scaffold only, no page content yet.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.4.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "typescript": "^5.6.3"
+  }
+}

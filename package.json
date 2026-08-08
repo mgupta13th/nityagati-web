@@ -1,0 +1,6 @@
+{
+  "name": "nityagati-web",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Nityagati public web applications workspace. Currently contains only apps/website (nityagati.com). Not a configured monorepo/workspace tool yet -- introduced only when a second app (apps/erp) actually exists."
+}
