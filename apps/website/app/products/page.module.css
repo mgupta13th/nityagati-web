@@ -1,0 +1,32 @@
+.eyebrowSpacing {
+  margin-top: var(--space-lg);
+}
+
+.availability {
+  color: var(--color-text-muted);
+  margin-top: var(--space-md);
+}
+
+.plannedList {
+  list-style: none;
+  margin: var(--space-md) 0 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+.plannedList h3 {
+  margin: 0 0 0.35rem 0;
+}
+
+.plannedList p {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .plannedList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

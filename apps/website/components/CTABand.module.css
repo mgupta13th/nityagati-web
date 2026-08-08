@@ -1,0 +1,9 @@
+.band {
+  text-align: center;
+}
+
+.copy {
+  max-width: 560px;
+  margin: 0 auto var(--space-md) auto;
+  color: rgba(255, 255, 255, 0.85);
+}

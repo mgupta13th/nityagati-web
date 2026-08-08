@@ -1,0 +1,26 @@
+.hero {
+  padding-top: var(--space-xl);
+}
+
+.heroHeading {
+  font-size: 2.25rem;
+  max-width: 720px;
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.availability {
+  color: var(--color-text-muted);
+  margin-top: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .heroHeading {
+    font-size: 3rem;
+  }
+}
