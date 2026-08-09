@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description:
       "Get in touch with Nityagati to learn more about Nityagati Business ERP.",
     url: "https://nityagati.com/contact",
-    images: ["/nityagati_logo_primary_navyblue.png"],
+    images: ["/nityagati_logo.svg"],
   },
 };
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
       "Learn about Nityagati, a technology platform built to help manufacturing businesses manage their operations simply and practically.",
     url: "https://nityagati.com/about",
-    images: ["/nityagati_logo_primary_navyblue.png"],
+    images: ["/nityagati_logo.svg"],
   },
 };
 

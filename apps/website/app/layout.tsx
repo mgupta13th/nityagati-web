@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     siteName: "Nityagati",
-    images: ["/nityagati_logo_primary_navyblue.png"],
+    images: ["/nityagati_logo.svg"],
   },
   icons: {
     // Two favicons, switched by the browser/OS theme -- the navy-badge
