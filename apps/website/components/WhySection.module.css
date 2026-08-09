@@ -1,0 +1,80 @@
+.grid {
+  display: grid;
+  grid-template-columns: 0.6fr 1fr;
+  gap: 2.6rem;
+  margin-top: 2.25rem;
+}
+
+.feature {
+  background: var(--color-surface-tint);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin-top: 1.1rem;
+}
+
+.feature p {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+  align-content: start;
+}
+
+.item {
+  padding: 1.3rem 1.3rem 1.3rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.secondary .item:nth-child(odd) {
+  border-right: 1px solid var(--color-border);
+  padding-right: 1.3rem;
+}
+
+.secondary .item:nth-child(even) {
+  padding-left: 1.3rem;
+}
+
+.item :global(.iconPlate) {
+  margin-bottom: 0.9rem;
+}
+
+.item h4 {
+  margin: 0 0 0.4rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.item p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .secondary {
+    grid-template-columns: 1fr;
+  }
+
+  .secondary .item:nth-child(odd),
+  .secondary .item:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: none;
+  }
+}

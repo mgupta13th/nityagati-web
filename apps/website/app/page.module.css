@@ -1,26 +1,211 @@
+/* Page spine -- a faint vertical rule running down the page, the
+   "Line of Work" motif carried through the whole layout, not just
+   individual diagrams. Desktop only (see media query below). */
+
+.pageShell {
+  position: relative;
+}
+
+.pageSpine {
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-navy);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Hero */
+
 .hero {
-  padding-top: var(--space-xl);
+  position: relative;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  overflow: hidden;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 620px;
+  min-width: 0;
 }
 
 .heroHeading {
-  font-size: 2.25rem;
-  max-width: 720px;
+  font-size: 2.4rem;
+  max-width: 580px;
+  letter-spacing: -0.015em;
+  margin-top: 1.2rem;
 }
 
 .heroCtas {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-top: var(--space-md);
+  gap: 1rem;
+  margin-top: 1.7rem;
 }
 
-.availability {
-  color: var(--color-text-muted);
-  margin-top: var(--space-md);
+.heroVisual {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
 }
 
 @media (min-width: 768px) {
   .heroHeading {
-    font-size: 3rem;
+    font-size: 3.25rem;
+  }
+}
+
+@media (min-width: 1081px) {
+  .heroGrid {
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .heroVisual {
+    justify-content: flex-end;
+  }
+}
+
+/* Section head (kicker + heading), reused across sections */
+
+.sectionHead {
+  max-width: 640px;
+  margin-bottom: 2rem;
+}
+
+.sectionHead h2 {
+  font-size: 1.7rem;
+  margin-top: 0.4rem;
+}
+
+@media (min-width: 768px) {
+  .sectionHead h2 {
+    font-size: 2rem;
+  }
+}
+
+/* The problem */
+
+.problemGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.problemStatement {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.4;
+  max-width: 640px;
+  letter-spacing: -0.005em;
+  margin-top: 1.4rem;
+}
+
+.problemStatement em {
+  font-style: normal;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.scatter {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.scatterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem 0.5rem 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.scatterIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.scatterIcon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.scatterArrow {
+  color: var(--color-text-muted);
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  flex-shrink: 0;
+}
+
+.scatterResult {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--color-navy);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem 0.55rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.scatterLogo {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+  .problemGrid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Connected system supporting note */
+
+.systemNote {
+  margin-top: 2.5rem;
+  max-width: 620px;
+  color: var(--color-text-muted);
+}
+
+/* Inside Nityagati intro line */
+
+.fragmentsIntro {
+  max-width: 640px;
+  color: var(--color-text-muted);
+  margin-top: -1.1rem;
+  margin-bottom: 2.25rem;
+}
+
+/* Capabilities availability line */
+
+.availability {
+  margin-top: 2.25rem;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 1080px) {
+  .pageSpine {
+    display: none;
   }
 }

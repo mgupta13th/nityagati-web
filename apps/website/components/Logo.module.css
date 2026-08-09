@@ -1,0 +1,31 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mark {
+  display: block;
+  width: 1.7em;
+  height: 1.7em;
+  flex-shrink: 0;
+}
+
+.text {
+  /* Typeface/weight/tracking now come from the shared global .brandWord
+     class (see globals.css) so every "Nityagati" instance across the
+     site stays visually identical. This rule only controls sizing
+     (relative to the surrounding context) and color. */
+  font-size: 1.1em;
+  color: currentColor;
+}
+
+.suffix {
+  /* Sized relative to .text so it scales with it; deliberately not
+     using .brandWord/Aldrich -- this is normal interface typography. */
+  font-size: 0.75em;
+  font-weight: 700;
+  color: currentColor;
+}

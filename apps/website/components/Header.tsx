@@ -2,44 +2,52 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 import styles from "./Header.module.css";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/products", label: "Products" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isContactActive = pathname === "/contact";
 
   return (
     <header className={styles.header}>
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.logoLink} aria-label="Nityagati home">
-          <Image
-            src="/nityagati_logo_primary_navyblue.png"
-            alt="Nityagati"
-            width={150}
-            height={100}
-            priority
-            style={{ width: "88px", height: "auto" }}
-          />
+          <Logo />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Primary">
           <ul className={styles.navList}>
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href}>{link.label}</Link>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={isActive ? styles.navLinkActive : undefined}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
-        <Link href="/contact" className={`btn btnPrimary ${styles.desktopCta}`}>
+        <Link
+          href="/contact"
+          className={`btn btnPrimary ${styles.desktopCta}`}
+          aria-current={isContactActive ? "page" : undefined}
+        >
           Contact Us
         </Link>
 
@@ -65,17 +73,26 @@ export default function Header() {
           }}
         >
           <ul className={styles.mobileNavList}>
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} onClick={() => setOpen(false)}>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={isActive ? styles.navLinkActive : undefined}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <Link
             href="/contact"
             className={`btn btnPrimary ${styles.mobileCta}`}
+            aria-current={isContactActive ? "page" : undefined}
             onClick={() => setOpen(false)}
           >
             Contact Us

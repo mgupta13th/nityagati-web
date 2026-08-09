@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.terminus {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ffffff;
+  margin: 0 auto 1.6rem;
+}
+
 .copy {
   max-width: 560px;
   margin: 0 auto var(--space-md) auto;

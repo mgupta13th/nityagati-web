@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "./Logo";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -7,13 +7,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.grid}`}>
         <div className={styles.brand}>
-          <Image
-            src="/nityagati_logo_primary_white.png"
-            alt="Nityagati"
-            width={150}
-            height={100}
-            style={{ width: "64px", height: "auto" }}
-          />
+          <Logo variant="inverted" />
           <p className={styles.tagline}>
             Business management for manufacturing businesses.
           </p>

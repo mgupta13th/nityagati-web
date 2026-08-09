@@ -15,6 +15,7 @@ export default function CTABand({
   return (
     <section className={`section sectionNavy ${styles.band}`}>
       <div className="container">
+        <span className={styles.terminus} aria-hidden="true" />
         <h2>{heading}</h2>
         <p className={styles.copy}>{copy}</p>
         <Link href={ctaHref} className="btn btnPrimary" style={{ background: "#fff", color: "var(--color-navy)" }}>

@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  // The floating dev-tools indicator (route/build info button) is a
+  // next dev-only overlay, never present in the static export -- disabled
+  // here so it doesn't appear during local preview either.
+  devIndicators: false,
 };
 
 export default nextConfig;

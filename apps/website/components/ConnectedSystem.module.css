@@ -1,0 +1,127 @@
+.trackWrap {
+  margin-top: 2.5rem;
+  position: relative;
+  padding-top: 1.5rem;
+}
+
+.trackLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(1.5rem + 13px);
+  height: 2px;
+  background: var(--color-border);
+}
+
+.trackFill {
+  position: absolute;
+  left: 0;
+  top: calc(1.5rem + 13px);
+  height: 2px;
+  width: 0%;
+  background: var(--color-navy);
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trackFillVisible {
+  width: 100%;
+}
+
+.trackChevrons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(1.5rem + 13px);
+  height: 2px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.nodes {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 210px;
+}
+
+.nodeDotOuter {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  flex-shrink: 0;
+}
+
+.nodeDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-navy);
+}
+
+.nodeTag {
+  margin-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-align: left;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+}
+
+.nodeTagText {
+  display: flex;
+  flex-direction: column;
+}
+
+.num {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-size: 0.64rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1080px) {
+  .nodes {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .node {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .nodeTag {
+    margin-top: 0;
+  }
+
+  .trackLine,
+  .trackFill,
+  .trackChevrons {
+    display: none;
+  }
+}

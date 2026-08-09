@@ -17,6 +17,11 @@
   display: inline-flex;
   align-items: center;
   margin-right: auto;
+  text-decoration: none;
+  /* ~22% larger than the base Logo size (mark + wordmark scale together,
+     both are em-based off this font-size) -- header height/nav/typography
+     elsewhere are untouched. */
+  font-size: 1.22rem;
 }
 
 .desktopNav {
@@ -35,13 +40,29 @@
   text-decoration: none;
   font-weight: 600;
   padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
 }
 
 .navList a:hover {
   color: var(--color-text-muted);
 }
 
-.desktopCta {
+/* Active page: a subtle navy underline, not a filled box -- kept
+   visually distinct from the permanent "Contact Us" CTA button so the
+   two never compete as "the selected item." */
+.navList a.navLinkActive,
+.mobileNavList a.navLinkActive {
+  border-bottom-color: var(--color-navy);
+}
+
+.navList a.navLinkActive:hover {
+  color: var(--color-navy);
+}
+
+a.desktopCta {
+  /* Element+class specificity, not just a class, so this reliably beats
+     the global .btn class's `display: inline-flex` regardless of CSS
+     chunk bundling order (equal-specificity tie was order-dependent). */
   display: none;
 }
 
@@ -101,6 +122,11 @@
   font-size: 1.1rem;
   display: block;
   padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.mobileNavList a.navLinkActive {
+  display: inline-block;
 }
 
 .mobileCta {
@@ -112,7 +138,7 @@
     display: block;
   }
 
-  .desktopCta {
+  a.desktopCta {
     display: inline-flex;
   }
 

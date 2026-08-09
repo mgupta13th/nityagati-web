@@ -1,0 +1,76 @@
+.list {
+  margin-top: 2.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--color-border);
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.4rem 2rem 1.4rem 0;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  transition: background 0.15s ease;
+}
+
+.list > .row:nth-child(odd) {
+  padding-left: 0;
+  border-right: 1px solid var(--color-border);
+  padding-right: 2rem;
+}
+
+.list > .row:nth-child(even) {
+  padding-left: 2rem;
+}
+
+.row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.row:hover::before {
+  background: var(--color-navy);
+}
+
+.index {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 1.02rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.detail {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1080px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+
+  .list > .row:nth-child(odd),
+  .list > .row:nth-child(even) {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: none;
+  }
+}

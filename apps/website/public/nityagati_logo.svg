@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
+  <rect x="4" y="4" width="92" height="92" rx="18" ry="18" fill="#0B1E3D"></rect>
+  <path d="M24 20
+           L24 80
+           L40 80
+           L40 71
+           L49 65
+           L40 59
+           L40 44
+           L60 80
+           L76 80
+           L76 20
+           L60 20
+           L60 29
+           L69 35
+           L60 41
+           L60 56
+           L40 20
+           Z" fill="#FFFFFF"></path>
+</svg>

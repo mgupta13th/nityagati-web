@@ -25,6 +25,20 @@
   --space-xl: 4rem;
 
   --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* WEB-005 homepage redesign — additive tokens only, existing rules above
+     are unchanged so other pages render exactly as before. */
+  --color-surface-tint: #eef2f8;
+  --shadow-md: 0 8px 24px rgba(11, 30, 61, 0.1);
+  --radius-lg: 16px;
+  --space-2xl: 6rem;
+
+  /* "Line of Work" homepage redesign — additive tokens only. */
+  --color-line-strong: rgba(11, 30, 61, 0.42);
+  --radius-crisp: 4px;
+  --shadow-panel: 0 26px 60px rgba(11, 30, 61, 0.14);
+  --shadow-frag: 0 10px 26px rgba(11, 30, 61, 0.07);
+  --shadow-frag-hover: 0 16px 32px rgba(11, 30, 61, 0.13);
 }
 
 * {
@@ -163,6 +177,65 @@ button {
   font-size: 1.15rem;
   color: var(--color-text-muted);
   max-width: 640px;
+}
+
+/* "Line of Work" shared utilities -- reused across several homepage
+   section components so each doesn't redefine the same rule. */
+
+.kicker {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.kickerTick {
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--color-navy);
+}
+
+/* Single source of truth for the "Nityagati" brand-name treatment
+   wherever it appears inline as the brand (never for body copy). Size
+   and color are inherited from context; only typeface/weight/tracking
+   are fixed here so every occurrence stays visually consistent. */
+.brandWord {
+  font-family: var(--font-aldrich), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.iconPlate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--color-surface-tint);
+  color: var(--color-navy);
+  flex-shrink: 0;
+}
+
+.iconPlate svg {
+  width: 21px;
+  height: 21px;
+}
+
+.iconPlateSm {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.iconPlateSm svg {
+  width: 15px;
+  height: 15px;
 }
 
 .visuallyHidden {
