@@ -5,9 +5,13 @@ node_modules/
 apps/website/.next/
 apps/website/out/
 
+# vite build output
+apps/admin/dist/
+
 # typescript
 apps/website/*.tsbuildinfo
 apps/website/next-env.d.ts
+apps/admin/*.tsbuildinfo
 
 # env files -- never commit secrets
 .env

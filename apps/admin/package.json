@@ -1,0 +1,23 @@
+{
+  "name": "admin",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Nityagati Management Console -- platform-staff application for managing Organizations across the Nityagati backend. Scaffold only, no screens yet.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.0"
+  }
+}
