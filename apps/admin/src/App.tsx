@@ -7,6 +7,7 @@ import AppLayout from "./layouts/AppLayout";
 import CreateOrganizationPage from "./organizations/CreateOrganizationPage";
 import OrganizationDetailPage from "./organizations/OrganizationDetailPage";
 import OrganizationsListPage from "./organizations/OrganizationsListPage";
+import OrganizationUsersPage from "./organizations/OrganizationUsersPage";
 
 function ProtectedPage({ children }: { children: ReactNode }) {
   return (
@@ -53,6 +54,14 @@ export default function App() {
             element={
               <ProtectedPage>
                 <OrganizationDetailPage />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/organizations/:organizationId/users"
+            element={
+              <ProtectedPage>
+                <OrganizationUsersPage />
               </ProtectedPage>
             }
           />

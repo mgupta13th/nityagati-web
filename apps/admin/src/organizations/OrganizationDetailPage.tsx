@@ -62,6 +62,10 @@ export default function OrganizationDetailPage() {
         <>
           <h2>{organization.name}</h2>
 
+          <p>
+            <Link to={`/organizations/${organization.id}/users`}>Users</Link>
+          </p>
+
           <section>
             <h3>Organization</h3>
             <dl>

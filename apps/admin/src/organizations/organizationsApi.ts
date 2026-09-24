@@ -106,3 +106,48 @@ export function fetchOrganization(token: string, organizationId: string): Promis
     token,
   });
 }
+
+// Mirrors the backend's PlatformOrganizationUserSummary exactly --
+// status is Membership.status (or a User.is_active-derived fallback),
+// never a password hash or any other auth field.
+export interface OrganizationUserSummary {
+  id: string;
+  name: string;
+  mobile: string;
+  email: string | null;
+  role: string;
+  status: string;
+  created_at: string;
+}
+
+export interface OrganizationUserListResponse {
+  items: OrganizationUserSummary[];
+  total: number;
+  page: number;
+  size: number;
+  has_more: boolean;
+}
+
+export interface ListOrganizationUsersParams {
+  search?: string;
+  page?: number;
+  size?: number;
+}
+
+export function fetchOrganizationUsers(
+  token: string,
+  organizationId: string,
+  { search, page = 1, size = 50 }: ListOrganizationUsersParams = {},
+): Promise<OrganizationUserListResponse> {
+  const params = new URLSearchParams();
+  params.set("page", String(page));
+  params.set("size", String(size));
+  if (search) {
+    params.set("search", search);
+  }
+
+  return apiRequest<OrganizationUserListResponse>(
+    `/platform-admin/organizations/${organizationId}/users?${params.toString()}`,
+    { token },
+  );
+}
