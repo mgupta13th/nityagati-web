@@ -2,7 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { AuthProvider } from "./auth/AuthContext";
 import LoginPage from "./auth/LoginPage";
 import RequireAuth from "./auth/RequireAuth";
-import HomePage from "./HomePage";
+import AppLayout from "./layouts/AppLayout";
+import OrganizationsListPage from "./organizations/OrganizationsListPage";
 
 export default function App() {
   return (
@@ -14,7 +15,9 @@ export default function App() {
             path="/"
             element={
               <RequireAuth>
-                <HomePage />
+                <AppLayout>
+                  <OrganizationsListPage />
+                </AppLayout>
               </RequireAuth>
             }
           />
