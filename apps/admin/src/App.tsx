@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { AuthProvider } from "./auth/AuthContext";
 import LoginPage from "./auth/LoginPage";
 import RequireAuth from "./auth/RequireAuth";
+import AuditEventsPage from "./audit/AuditEventsPage";
 import AppLayout from "./layouts/AppLayout";
 import CreateOrganizationPage from "./organizations/CreateOrganizationPage";
 import OrganizationDetailPage from "./organizations/OrganizationDetailPage";
@@ -80,6 +81,14 @@ export default function App() {
             element={
               <ProtectedPage>
                 <CreateStaffPage />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/audit-events"
+            element={
+              <ProtectedPage>
+                <AuditEventsPage />
               </ProtectedPage>
             }
           />
