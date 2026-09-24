@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { setUnauthorizedHandler } from "../api/client";
 import { fetchMe, login as loginRequest } from "./platformStaffApi";
 
 // sessionStorage, not localStorage -- a platform-staff session should not
@@ -85,6 +86,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setStaff(null);
     setStatus("unauthenticated");
   }, []);
+
+  // Registers this provider's own logout as api/client.ts's single
+  // global 401 handler -- a token-bearing request that comes back 401
+  // anywhere in the app (session expired mid-use, or the account was
+  // just deactivated) clears the session the same way an explicit
+  // logout does; RequireAuth's existing <Navigate> then redirects to
+  // /login declaratively once `status` flips.
+  //
+  // The cleanup below (unregistering on unmount) is included for
+  // correctness even though it's not expected to ever run in practice:
+  // AuthProvider wraps the entire app once, directly inside
+  // BrowserRouter in App.tsx, and is never conditionally rendered or
+  // remounted during this app's lifetime -- it only unmounts when the
+  // whole page does (navigation away, tab close, reload), at which
+  // point the module-level handler reference is discarded anyway. The
+  // cleanup exists so this stays correct even if that assumption ever
+  // changes (e.g. a future test harness mounting/unmounting
+  // AuthProvider repeatedly), not because a stale handler is reachable
+  // today.
+  useEffect(() => {
+    setUnauthorizedHandler(logout);
+    return () => setUnauthorizedHandler(null);
+  }, [logout]);
 
   const value = useMemo<AuthContextValue>(
     () => ({ status, staff, token, login, logout }),

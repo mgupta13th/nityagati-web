@@ -12,6 +12,8 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         <nav>
           <Link to="/organizations">Organizations</Link>
           {" | "}
+          <Link to="/staff">Platform Staff</Link>
+          {" | "}
           <button type="button" onClick={logout}>
             Logout
           </button>

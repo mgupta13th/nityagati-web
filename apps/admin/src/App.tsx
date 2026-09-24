@@ -8,6 +8,8 @@ import CreateOrganizationPage from "./organizations/CreateOrganizationPage";
 import OrganizationDetailPage from "./organizations/OrganizationDetailPage";
 import OrganizationsListPage from "./organizations/OrganizationsListPage";
 import OrganizationUsersPage from "./organizations/OrganizationUsersPage";
+import CreateStaffPage from "./staff/CreateStaffPage";
+import StaffListPage from "./staff/StaffListPage";
 
 function ProtectedPage({ children }: { children: ReactNode }) {
   return (
@@ -62,6 +64,22 @@ export default function App() {
             element={
               <ProtectedPage>
                 <OrganizationUsersPage />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/staff"
+            element={
+              <ProtectedPage>
+                <StaffListPage />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/staff/new"
+            element={
+              <ProtectedPage>
+                <CreateStaffPage />
               </ProtectedPage>
             }
           />
