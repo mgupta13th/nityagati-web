@@ -151,3 +151,18 @@ export function fetchOrganizationUsers(
     { token },
   );
 }
+
+// PATCH .../status returns the same OrganizationDetail shape as GET
+// .../{organizationId} -- the caller can replace its local state
+// directly with the response, no extra round trip needed.
+export function setOrganizationStatus(
+  token: string,
+  organizationId: string,
+  active: boolean,
+): Promise<OrganizationDetail> {
+  return apiRequest<OrganizationDetail>(`/platform-admin/organizations/${organizationId}/status`, {
+    method: "PATCH",
+    token,
+    body: { active },
+  });
+}

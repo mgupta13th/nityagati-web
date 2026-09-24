@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { ApiError } from "../api/client";
 import { useAuth } from "../auth/AuthContext";
-import { fetchOrganization, type OrganizationDetail } from "./organizationsApi";
+import { fetchOrganization, setOrganizationStatus, type OrganizationDetail } from "./organizationsApi";
 
 type LoadState = "loading" | "loaded" | "not-found" | "error";
 
@@ -13,6 +13,8 @@ export default function OrganizationDetailPage() {
   const [organization, setOrganization] = useState<OrganizationDetail | null>(null);
   const [state, setState] = useState<LoadState>("loading");
   const [error, setError] = useState<string | null>(null);
+  const [statusPending, setStatusPending] = useState(false);
+  const [statusError, setStatusError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!token || !organizationId) {
@@ -46,6 +48,38 @@ export default function OrganizationDetailPage() {
     };
   }, [token, organizationId]);
 
+  async function handleToggleStatus() {
+    if (!token || !organization || statusPending) {
+      return;
+    }
+
+    const nextActive = !organization.is_active;
+
+    if (!nextActive) {
+      const confirmed = window.confirm(
+        `Deactivate ${organization.name}? Its users will not be able to sign in, and any of their ` +
+          `current sessions stop working on their next request. This can be reversed at any time.`,
+      );
+      if (!confirmed) {
+        return;
+      }
+    }
+
+    setStatusError(null);
+    setStatusPending(true);
+
+    try {
+      const updated = await setOrganizationStatus(token, organization.id, nextActive);
+      setOrganization(updated);
+    } catch (err) {
+      setStatusError(
+        err instanceof ApiError ? err.message : "Unable to update this organization. Please try again.",
+      );
+    } finally {
+      setStatusPending(false);
+    }
+  }
+
   return (
     <section>
       <p>
@@ -72,12 +106,22 @@ export default function OrganizationDetailPage() {
               <dt>Name</dt>
               <dd>{organization.name}</dd>
               <dt>Status</dt>
-              <dd>{organization.is_active ? "Active" : "Inactive"}</dd>
+              <dd>
+                {organization.is_active ? "Active" : "Inactive"}{" "}
+                <button type="button" disabled={statusPending} onClick={handleToggleStatus}>
+                  {statusPending
+                    ? "Updating..."
+                    : organization.is_active
+                      ? "Deactivate"
+                      : "Activate"}
+                </button>
+              </dd>
               <dt>Organization ID</dt>
               <dd>{organization.id}</dd>
               <dt>Created</dt>
               <dd>{new Date(organization.created_at).toLocaleDateString()}</dd>
             </dl>
+            {statusError && <p role="alert">{statusError}</p>}
           </section>
 
           <section>
