@@ -39,3 +39,40 @@ export function fetchOrganizations(
     { token },
   );
 }
+
+// Mirrors the backend's PlatformOrganizationCreateRequest exactly
+// (schemas/platform_admin.py) -- no operator (derived server-side from
+// the authenticated Platform Staff principal) and no owner_password (the
+// backend always generates one, returned once below).
+export interface CreateOrganizationRequest {
+  name: string;
+  mobile?: string;
+  email?: string;
+  gstin?: string;
+  pan?: string;
+  address?: string;
+  owner_name: string;
+  owner_mobile: string;
+  owner_email?: string;
+}
+
+// Mirrors the backend's OrganizationProvisioningResponse -- reused as-is
+// by the new endpoint, so reused as-is here too.
+export interface CreateOrganizationResponse {
+  organization_id: string;
+  organization_name: string;
+  owner_id: string;
+  owner_mobile: string;
+  generated_password: string | null;
+}
+
+export function createOrganization(
+  token: string,
+  data: CreateOrganizationRequest,
+): Promise<CreateOrganizationResponse> {
+  return apiRequest<CreateOrganizationResponse>("/platform-admin/organizations", {
+    method: "POST",
+    token,
+    body: data,
+  });
+}

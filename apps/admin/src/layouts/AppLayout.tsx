@@ -10,7 +10,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       <header>
         <h1>Nityagati Management Console</h1>
         <nav>
-          <Link to="/">Organizations</Link>
+          <Link to="/organizations">Organizations</Link>
           {" | "}
           <button type="button" onClick={logout}>
             Logout

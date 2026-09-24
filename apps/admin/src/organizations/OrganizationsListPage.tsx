@@ -1,4 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
+import { Link } from "react-router";
 import { ApiError } from "../api/client";
 import { useAuth } from "../auth/AuthContext";
 import { fetchOrganizations, type OrganizationSummary } from "./organizationsApi";
@@ -60,6 +61,10 @@ export default function OrganizationsListPage() {
   return (
     <section>
       <h2>Organizations</h2>
+
+      <p>
+        <Link to="/organizations/new">+ Create Organization</Link>
+      </p>
 
       <form onSubmit={handleSearchSubmit}>
         <label htmlFor="org-search">Search</label>
