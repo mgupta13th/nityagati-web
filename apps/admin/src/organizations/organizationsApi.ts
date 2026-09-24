@@ -76,3 +76,33 @@ export function createOrganization(
     body: data,
   });
 }
+
+// Mirrors the backend's PlatformOrganizationOwnerSummary exactly --
+// name/mobile/email only, never a password hash or any auth field.
+export interface OrganizationOwnerSummary {
+  name: string;
+  mobile: string;
+  email: string | null;
+}
+
+// Mirrors the backend's PlatformOrganizationDetail exactly
+// (schemas/platform_admin.py). updated_at is deliberately absent on the
+// backend response too -- see that schema's own docstring.
+export interface OrganizationDetail {
+  id: string;
+  name: string;
+  is_active: boolean;
+  mobile: string | null;
+  email: string | null;
+  address: string | null;
+  gstin: string | null;
+  pan: string | null;
+  created_at: string;
+  owner: OrganizationOwnerSummary | null;
+}
+
+export function fetchOrganization(token: string, organizationId: string): Promise<OrganizationDetail> {
+  return apiRequest<OrganizationDetail>(`/platform-admin/organizations/${organizationId}`, {
+    token,
+  });
+}

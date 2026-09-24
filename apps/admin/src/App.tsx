@@ -5,6 +5,7 @@ import LoginPage from "./auth/LoginPage";
 import RequireAuth from "./auth/RequireAuth";
 import AppLayout from "./layouts/AppLayout";
 import CreateOrganizationPage from "./organizations/CreateOrganizationPage";
+import OrganizationDetailPage from "./organizations/OrganizationDetailPage";
 import OrganizationsListPage from "./organizations/OrganizationsListPage";
 
 function ProtectedPage({ children }: { children: ReactNode }) {
@@ -44,6 +45,14 @@ export default function App() {
             element={
               <ProtectedPage>
                 <CreateOrganizationPage />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/organizations/:organizationId"
+            element={
+              <ProtectedPage>
+                <OrganizationDetailPage />
               </ProtectedPage>
             }
           />

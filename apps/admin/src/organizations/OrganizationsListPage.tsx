@@ -103,11 +103,7 @@ export default function OrganizationsListPage() {
                   <td>{organization.is_active ? "Active" : "Inactive"}</td>
                   <td>{new Date(organization.created_at).toLocaleDateString()}</td>
                   <td>
-                    {/* Organization Details is a later commit -- disabled,
-                        not a link to a route that doesn't exist yet. */}
-                    <button type="button" disabled title="Organization details are not available yet">
-                      View
-                    </button>
+                    <Link to={`/organizations/${organization.id}`}>View</Link>
                   </td>
                 </tr>
               ))}
