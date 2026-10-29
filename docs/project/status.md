@@ -6,14 +6,14 @@
 
 The Management Console v1 is **code-complete locally and backed by passing backend tests**. It is **not deployed**
 and **cannot work in production as configured**, because `admin.nityagati.com` has no DNS record and the
-production API's CORS policy rejects that origin. The web repository has **9 commits that are not pushed**.
+production API's CORS policy rejects that origin. The web repository has **12 commits that are not pushed**: 9 Console commits, the independent-install build fix, and two documentation commits.
 
 ## Repository state
 
 | Item | Observed | Evidence |
 |---|---|---|
-| `nityagati-web` branch | `develop`, **ahead of `origin/develop` by 9**, behind 0 | `git status`, `git rev-list --left-right --count HEAD...@{u}` → `9 0` |
-| Uncommitted work | This documentation set, plus the independent-install fix: root `workspaces` and root `package-lock.json` removed, `apps/admin/package-lock.json` added ([ADR-0006](../decisions/0006-independent-app-installs.md)) | `git status` |
+| `nityagati-web` branch | `develop`, **ahead of `origin/develop` by 12**, behind 0 | `git rev-list --left-right --count origin/develop...HEAD` → `0 12` |
+| Post-Console commits (local, unpushed) | `436dd82` build fix: root `workspaces` and root `package-lock.json` removed, `apps/admin/package-lock.json` added ([ADR-0006](../decisions/0006-independent-app-installs.md)). `08c0874`: this documentation set. Then a status-update commit. Working tree clean | `git log origin/develop..HEAD`, `git status` |
 | Unpushed commits | `6474b8e` scaffold → `361a37d` audit events page (all Console work) | `git log` |
 | `nityagati-web` tags | none | `git tag` |
 | `FactoryFlow360` | `master` == `origin/master` at `1ec20d4`; tag `v3.15.0-platform-staff-console` → `1ec20d4` | `git rev-parse v3.15.0-platform-staff-console^{commit}` |
@@ -106,7 +106,7 @@ There are no automated test suites for `apps/website` or `apps/admin`. The type 
 
 | # | Finding | Severity | Status |
 |---|---|---|---|
-| 1 | 9 Console commits exist only on one local machine | High (loss risk) | Open. Push needs approval |
+| 1 | 12 unpushed commits (Console, build fix, docs) exist only on one local machine | High (loss risk) | Open. Push needs approval |
 | 2 | Production CORS does not allow `https://admin.nityagati.com` | Blocker for deploy | Open. Backend env change needs approval |
 | 3 | `admin.nityagati.com` has no DNS or hosting | Blocker for deploy | Open |
 | 4 | `Organization.is_active` was previously unenforced | — | **Resolved in code** (`141f053`), with tests. Prod check pending |
@@ -118,7 +118,7 @@ There are no automated test suites for `apps/website` or `apps/admin`. The type 
 | 10 | 422 validation errors render as status text, not field messages | Low | Planned |
 | 11 | Stale descriptions: `apps/admin/package.json` and `vite.config.ts` comments say "scaffold only"; `apps/website/components/README.md` and `content/README.md` say "intentionally empty" | Low | Not changed (app/website files out of scope for a docs-only pass) |
 | 12 | Login rate limiting for Platform Staff | Unknown | Verify |
-| 13 | Root npm workspace (`6474b8e`) silently moved the website build onto a root lockfile that has Windows-only Next.js/sharp binaries and React 19.3.0, so a push would have changed the production website build | High (prod website) | **Fixed locally, uncommitted** ([ADR-0006](../decisions/0006-independent-app-installs.md)). Must be committed before the 9 commits are pushed |
+| 13 | Root npm workspace (`6474b8e`) silently moved the website build onto a root lockfile that has Windows-only Next.js/sharp binaries and React 19.3.0, so a push would have changed the production website build | High (prod website) | **Fixed and committed locally** in `436dd82` ([ADR-0006](../decisions/0006-independent-app-installs.md)). Not yet pushed. It ships in the same push as the 9 Console commits, so the workspace layout is never deployed |
 
 ## Open decisions
 
@@ -136,7 +136,7 @@ See the implementation plan below. Nothing here has been started.
 
 ### P0 — protect and unblock (no feature work)
 
-1. Commit the independent-install fix and the docs on top of the 9 commits. Then push `nityagati-web/develop` to `origin` *(needs approval)*.
+1. ~~Commit the independent-install fix and docs~~ (done: `436dd82`, `08c0874`). Push all 12 commits of `nityagati-web/develop` to `origin` in one push *(needs approval)*.
    **The push deploys the public website** through Cloudflare Pages: watch the Pages build log and check `nityagati.com` afterwards.
 2. Choose hosting for the Console. Create DNS for `admin.nityagati.com`.
 3. Add `https://admin.nityagati.com` to production `CORS_ALLOWED_ORIGINS` and restart the API *(production change, needs approval)*.
