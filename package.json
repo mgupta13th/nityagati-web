@@ -2,8 +2,5 @@
   "name": "nityagati-web",
   "private": true,
   "version": "0.0.0",
-  "description": "Nityagati public web applications workspace. Contains apps/website (nityagati.com) and apps/admin (the Nityagati Management Console). npm workspaces only -- no Turborepo/Nx, introduced because apps/admin made this a real two-app repository.",
-  "workspaces": [
-    "apps/*"
-  ]
+  "description": "Nityagati web applications. Not an npm workspace: apps/website (nityagati.com) and apps/admin (the Nityagati Management Console) each install and build independently from their own directory, with their own package-lock.json."
 }
